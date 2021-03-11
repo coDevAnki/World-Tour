@@ -1,0 +1,51 @@
+import styled from "styled-components";
+import { useClickOutside } from "../custom-hooks";
+const SuggestionsBarWrapper = styled.div`
+  font-size: ${({ fz }) => (fz ? fz : "2.5rem")};
+  border-radius: 5px;
+  background-color: white;
+  width: 100%;
+  padding-top: 1rem;
+  transform: ${({ active }) =>
+    active ? `scaleY(1) translateY(-7px)` : `scaleY(0) translateY(-7px)`};
+  transform-origin: top;
+  transition: ${({ partOf }) =>
+    partOf === "nav" ? "" : "0.2s ease transform"};
+  position: absolute;
+  z-index: 2000;
+`;
+const SuggestionItem = styled.div`
+  width: 100%;
+  cursor: pointer;
+  box-sizing: padding-box;
+  font-size: 2rem;
+  border-radius: 5px;
+  padding: 0.3em 2rem;
+  background-color: white;
+  margin-top: -6px;
+  :hover {
+    background-color: lightcyan;
+  }
+`;
+const SuggestionsBar = ({
+  results,
+  onOutsideClick,
+  partOf,
+  goToRespectivePage,
+}) => {
+  const { elRef } = useClickOutside({ callback: onOutsideClick });
+
+  return (
+    <SuggestionsBarWrapper active={results?.length} partOf={partOf} ref={elRef}>
+      {results?.map(({ id, name, type, country_id }) => (
+        <SuggestionItem
+          onClick={() => goToRespectivePage({ id, type, country_id })}
+        >
+          {name}
+          {type === "city" ? ", " + country_id.replaceAll("_", " ") : ""}
+        </SuggestionItem>
+      ))}
+    </SuggestionsBarWrapper>
+  );
+};
+export default SuggestionsBar;
