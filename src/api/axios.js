@@ -28,7 +28,7 @@ const imageInstance = axios.create({
 
 export const getCountryCodes = async (country) => {
   const data = await instance.get(
-    `http://restcountries.eu/rest/v2/name/${country}?fields=name;altSpellings;capital;alpha2Code;alpha3Code;area;`
+    `https://restcountries.eu/rest/v2/name/${country}?fields=name;altSpellings;capital;alpha2Code;alpha3Code;area;`
   );
 
   if (Array.isArray(data?.data) && data?.data.length > 1) {
