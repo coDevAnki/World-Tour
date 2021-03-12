@@ -11,29 +11,34 @@ const useSearch = () => {
   const history = useHistory();
 
   useEffect(() => {
-    clearInput();
+    return clearInput();
   }, [pathname]);
 
-  const clearInput = () => {
-    setTerm("");
-    setDebouncedTerm("");
-  };
-
-  const { response } = usePromise(
+  useEffect(() => {});
+  const { response, reset } = usePromise(
     () => debouncedTerm && searchPlace(debouncedTerm),
     [debouncedTerm]
   );
-
-  const onChange = (e) => {
-    setTerm(e.target.value);
-  };
 
   const results = response?.data?.results.filter(
     (suggestion) => suggestion.type === "city" || suggestion.type === "country"
   );
 
-  const goToSearchPage = (e) => {
-    history.push(`/search?q=${debouncedTerm}`, { q: results });
+  const clearInput = () => {
+    setTerm("");
+    setDebouncedTerm("");
+    reset();
+  };
+
+  const onChange = (e) => {
+    setTerm(e.target.value);
+  };
+
+  const goToSearchPage = () => {
+    if (typeof term === "string" && !term.trim()) return;
+    if (typeof debouncedTerm === "string" && !debouncedTerm.trim()) return;
+
+    history.push(`/search?q=${debouncedTerm.trim()}`, { q: results });
   };
   const goToRespectivePage = ({ type, country_id, id }) => {
     let path =
@@ -50,11 +55,11 @@ const useSearch = () => {
     query,
     results,
     onChange,
-
     debouncedTerm,
     clearInput,
     goToSearchPage,
     goToRespectivePage,
+    term,
   };
 };
 

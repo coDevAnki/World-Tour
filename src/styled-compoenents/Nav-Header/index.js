@@ -1,7 +1,7 @@
-import React from "react";
+import React, { memo } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ReactComponent as TitleLogo } from "../../assets/vectorpaint.svg";
-import { ScrollIndicator, SearchBar } from "../../styled-compoenents";
+import { SearchBar } from "../../styled-compoenents";
 import {
   NavContainer,
   NavHeaderContainer,
@@ -13,7 +13,6 @@ const NavHeader = () => {
   const { pathname } = useLocation();
   return (
     <>
-      <ScrollIndicator />
       <NavTitle>
         <TitleLogo />
       </NavTitle>
@@ -39,4 +38,4 @@ const NavHeader = () => {
   );
 };
 
-export default NavHeader;
+export default memo(NavHeader);

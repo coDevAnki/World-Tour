@@ -35,7 +35,7 @@ PlaceCard.Background = styled.div`
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.9;
+    opacity: 0.85;
     transition: 0.1s ease opacity;
     :hover {
       opacity: 1;

@@ -15,6 +15,7 @@ const SearchBar = ({ partOf }) => {
     results,
     onChange,
     debouncedTerm,
+    term,
     clearInput,
     goToSearchPage,
     goToRespectivePage,
@@ -25,22 +26,19 @@ const SearchBar = ({ partOf }) => {
         autoComplete="off"
         onChange={onChange}
         onSubmit={goToSearchPage}
-        placeholder={partOf === "nav" ? "" : "Where Do I Want To Go"}
+        placeholder={partOf === "nav" ? "" : "Where Do You Want To Go"}
         button={debouncedTerm ? true : ""}
         partOf={partOf}
-        onBlur={() => {
-          if (partOf === "nav") {
-            clearInput();
-          }
-        }}
       />
-      <SuggestionsBar
-        searchTerm={debouncedTerm}
-        onOutsideClick={clearInput}
-        results={results}
-        partOf={partOf}
-        goToRespectivePage={goToRespectivePage}
-      />
+      {term ? (
+        <SuggestionsBar
+          searchTerm={debouncedTerm}
+          onOutsideClick={clearInput}
+          results={results}
+          partOf={partOf}
+          goToRespectivePage={goToRespectivePage}
+        />
+      ) : null}
     </SearchBarContainer>
   );
 };

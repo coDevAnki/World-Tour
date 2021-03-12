@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { getAllCities, getCountryCodes, getImage } from "../api/axios";
-import { usePromise } from "../custom-hooks";
-import { Map, TopCity, Wrapper } from "../styled-compoenents";
+import { usePromise, useStartFromTop } from "../custom-hooks";
+import { FallBack, Map, TopCity, Wrapper } from "../styled-compoenents";
 
 const TopCitiesPage = () => {
   const { country } = useParams();
@@ -15,7 +15,7 @@ const TopCitiesPage = () => {
     loading: loadingCountryArea,
     response: responseCountryArea,
   } = usePromise(() => getCountryCodes(country));
-
+  useStartFromTop();
   const { loading: loadingImage, response: responseImage } = usePromise(() => {
     if (!responseCities?.data?.results) return;
     return Promise.all(
@@ -23,7 +23,7 @@ const TopCitiesPage = () => {
     );
   }, [responseCities]);
 
-  if (loadingCities) return <div>Loading...</div>;
+  if (loadingCities) return <FallBack />;
   return (
     <div>
       <Map
@@ -38,6 +38,7 @@ const TopCitiesPage = () => {
       <Wrapper direction="column" justify="space-around" width="93vw">
         {responseCities?.data.results.map((city, index) => (
           <TopCity
+            key={`top-cities-${index}`}
             city={city}
             imgSrc={
               responseImage

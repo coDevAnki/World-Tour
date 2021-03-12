@@ -6,7 +6,7 @@ const PopularDestinationsData = [
     title: "FRANCE",
     to: "region/France",
     src:
-      "https://images.unsplash.com/photo-1542654071-7ded22488685?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80",
+      "https://images.unsplash.com/photo-1542654071-7ded22488685?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80",
   },
   {
     title: "INDIA",
@@ -51,8 +51,8 @@ const PopularDestinations = () => {
     <PopularDestinationsContainer>
       <Header>Popular Destinations</Header>
       <PlaceCardWrapper>
-        {PopularDestinationsData.map(({ title, to, src }) => (
-          <PlaceCard to={to}>
+        {PopularDestinationsData.map(({ title, to, src }, index) => (
+          <PlaceCard to={to} key={`popular_destination-${index}`}>
             <PlaceCard.SubHeader color="white">{title}</PlaceCard.SubHeader>
             <PlaceCard.Background bgHeight="100%">
               <img src={src} />

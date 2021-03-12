@@ -1,63 +1,80 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import {
-  CountryPage,
-  LandingPage,
-  PlaceDetailsPage,
-  RegionPage,
-  SearchPage,
-  TopCitiesPage,
-} from "./pages";
-import { Breadcrumb, NavHeader } from "./styled-compoenents";
+  Breadcrumb,
+  FallBack,
+  Footer,
+  NavHeader,
+  ScrollIndicator,
+} from "./styled-compoenents";
+
+const LandingPage = lazy(() => import("./pages/LandingPage"));
+const CountryPage = lazy(() => import("./pages/CountryPage"));
+const RegionPage = lazy(() => import("./pages/RegionPage"));
+const TopCitiesPage = lazy(() => import("./pages/TopCitiesPage.js"));
+const PlaceDetailsPage = lazy(() => import("./pages/PlaceDetailsPage.js"));
+const SearchPage = lazy(() => import("./pages/SearchPage.js"));
 
 const App = () => {
   return (
     <BrowserRouter>
+      <ScrollIndicator />
       <NavHeader />
-      <Switch>
-        <Route exact path="/" render={() => <LandingPage />} />
-        <Route path="/search" render={() => <SearchPage />} />
-        <Route
-          exact
-          path="/:region/:country/:typeOfplace"
-          render={() => (
-            <>
-              <Breadcrumb />
-              <TopCitiesPage />
-            </>
-          )}
-        />
-        <Route
-          exact
-          path="/:region/:country/:typeOfplace/:placeName"
-          render={() => (
-            <>
-              <Breadcrumb />
-              <PlaceDetailsPage />
-            </>
-          )}
-        />
-        <Route
-          exact
-          path="/:region/:country"
-          render={() => (
-            <>
-              <Breadcrumb />
-              <CountryPage />
-            </>
-          )}
-        />
-        <Route
-          exact
-          path="/:region"
-          render={() => (
-            <>
-              <Breadcrumb />
-              <RegionPage />
-            </>
-          )}
-        />
-      </Switch>
+      <Suspense fallback={<FallBack />}>
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={() => (
+              <>
+                <LandingPage />
+              </>
+            )}
+          />
+          <Route path="/search" render={() => <SearchPage />} />
+          <Route
+            exact
+            path="/:region/:country/:typeOfplace"
+            render={() => (
+              <>
+                <Breadcrumb />
+                <TopCitiesPage />
+              </>
+            )}
+          />
+          <Route
+            exact
+            path="/:region/:country/:typeOfplace/:placeName"
+            render={() => (
+              <>
+                <Breadcrumb />
+                <PlaceDetailsPage />
+              </>
+            )}
+          />
+          <Route
+            exact
+            path="/:region/:country"
+            render={() => (
+              <>
+                <Breadcrumb />
+                <CountryPage />
+              </>
+            )}
+          />
+          <Route
+            exact
+            path="/:region"
+            render={() => (
+              <>
+                <Breadcrumb />
+                <RegionPage />
+              </>
+            )}
+          />
+        </Switch>
+        <Footer />
+      </Suspense>
     </BrowserRouter>
   );
 };

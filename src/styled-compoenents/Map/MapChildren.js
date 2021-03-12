@@ -76,8 +76,9 @@ const MapChildren = ({
         ref={f}
       />
       {dataForMarker
-        ? dataForMarker.map((each) => (
+        ? dataForMarker.map((each, index) => (
             <MapPopup
+              key={`map_popup-${index}`}
               activeInMap={activeInMap}
               each={each}
               setActiveInMap={setActiveInMap}

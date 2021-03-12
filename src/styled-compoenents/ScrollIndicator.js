@@ -19,10 +19,15 @@ const ScrollIndicator = () => {
         setScrollProgress(0);
         return;
       }
-      let scrolled = window.innerHeight + window.scrollY;
-      setScrollProgress(scrolled / document.body.offsetHeight);
+      requestAnimationFrame(() => {
+        let scrolled = window.innerHeight + window.scrollY;
+        setScrollProgress(scrolled / document.body.offsetHeight);
+      });
     };
-    document.addEventListener("scroll", proggressOnScroll);
+    document.addEventListener("scroll", proggressOnScroll, {
+      capture: false,
+      passive: true,
+    });
     return () => {
       document.removeEventListener("scroll", proggressOnScroll);
     };

@@ -1,6 +1,6 @@
-import React,{useEffect} from "react";
+import React from "react";
 import { useLocation } from "react-router";
-import noImage from "../../assets/no_image-600x490-removebg-preview.png";
+import noImage from "../../assets/no_image.png";
 import { Header, LinkedButton, Wrapper } from "../../styled-compoenents";
 import { TopCityImgContainer, TopCityTextContainer } from "./TopCityParts";
 
@@ -18,7 +18,6 @@ const TopCity = ({ city, loadingImage, imgSrc, setActiveInMap }) => {
                 document.getElementById("MAIN_MAP")?.scrollIntoView();
                 setActiveInMap(city);
               }}
-              style={{ color: "red", cursor: "pointer" }}
               className="fas fa-map-marker-alt fa-lg"
             ></i>
           </span>

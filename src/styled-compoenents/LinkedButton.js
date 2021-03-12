@@ -11,13 +11,17 @@ const LinkedButton = styled(Link)`
       : size === "sm"
       ? "1.5rem"
       : "2rem"};
+  text-align: center;
+  font-weight: var(--font-bold);
   text-decoration: none;
-  color: var(--clr-secondary);
+  color: ${({ color }) => (color ? color : "var(--clr-secondary)")};
   border: 1px solid var(--clr-primary);
   border-radius: 0.2em;
-  background-color: white;
+  background-color: ${({ bgc }) => (bgc ? `var(${bgc})` : "white")};
   :hover {
-    background-color: lavender;
+    background-color: ${({ bgc }) =>
+      bgc ? `rgba(var(${bgc}-rgb), 0.8)` : "var(--clr-bg)"};
   }
+  width: ${({ width }) => (width ? width : "auto")};
 `;
 export default LinkedButton;

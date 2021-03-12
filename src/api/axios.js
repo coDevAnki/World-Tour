@@ -150,8 +150,9 @@ export const getImage = async (q) => {
 };
 
 export const searchPlace = async (query) => {
+  if (!query) return [];
   const data = await instance.get(
-    `location.json?annotate=trigram:${query}&trigram=>=0.3`
+    `location.json?annotate=trigram:${query.trim()}&trigram=>=0.3`
   );
   return data;
 };

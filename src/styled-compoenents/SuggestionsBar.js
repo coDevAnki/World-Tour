@@ -33,12 +33,15 @@ const SuggestionsBar = ({
   partOf,
   goToRespectivePage,
 }) => {
-  const { elRef } = useClickOutside({ callback: onOutsideClick });
+  const { elRef } = useClickOutside({
+    callback: onOutsideClick,
+  });
 
   return (
     <SuggestionsBarWrapper active={results?.length} partOf={partOf} ref={elRef}>
-      {results?.map(({ id, name, type, country_id }) => (
+      {results?.map(({ id, name, type, country_id }, index) => (
         <SuggestionItem
+          key={`suggetions-${index}`}
           onClick={() => goToRespectivePage({ id, type, country_id })}
         >
           {name}

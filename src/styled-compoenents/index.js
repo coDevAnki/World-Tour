@@ -1,10 +1,13 @@
-import Breadcrumb from "./Breadcrumb/Breadcrumb";
+import Breadcrumb from "./Breadcrumb";
 import CountryContent from "./CountryContent";
 import CountryHero from "./CountryHero";
 import CountrySelection from "./CountrySelection";
+import FallBack from "./FallBack";
 import FilterByLetters from "./FilterByLetters";
+import Footer from "./Footer";
 import GoToTop from "./GoToTop";
 import Header from "./Header";
+import HeroImage from "./HeroImage";
 import Input from "./Input";
 import LinkedButton from "./LinkedButton";
 import Map from "./Map";
@@ -15,13 +18,14 @@ import PopularDestinations from "./PopularDestinations";
 import RegionSelection from "./RegionSelection";
 import ScrollIndicator from "./ScrollIndicator";
 import SearchBar from "./SearchBar";
-import SearchResults from "./SearchResults/index";
+import SearchResults from "./SearchResults";
 import SuggestionsBar from "./SuggestionsBar";
 import TopCity from "./TopCity";
 import Wrapper from "./Wrapper";
 
 export {
   Wrapper,
+  HeroImage,
   Header,
   Input,
   RegionSelection,
@@ -32,6 +36,7 @@ export {
   LinkedButton,
   Breadcrumb,
   Map,
+  Footer,
   CountryHero,
   NavHeader,
   ScrollIndicator,
@@ -43,4 +48,5 @@ export {
   CountryContent,
   PopularDestinations,
   TopCity,
+  FallBack,
 };

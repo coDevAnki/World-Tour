@@ -1,16 +1,20 @@
 import React from "react";
-import { PlaceCard, PlaceCardWrapper } from "..";
+import { FallBack, PlaceCard, PlaceCardWrapper, Wrapper } from "..";
 import { getImage } from "../../api/axios";
+import noImage from "../../assets/no-image2.png";
 import { usePromise } from "../../custom-hooks";
 
 const SearchResults = ({ data }) => {
-  const { loading: imgLoading, response: imgResponse, error } = usePromise(
-    () => Promise.all(data.map((item) => getImage(item.name))),
-    [data]
-  );
+  const {
+    loading: loadingImage,
+    response: imgResponse,
+    error,
+  } = usePromise(() => Promise.all(data.map((item) => getImage(item.name))), [
+    data,
+  ]);
 
   if (Array.isArray(data) && data.length === 0)
-    return <>Sorry, No Results Found</>;
+    return <Wrapper>Sorry, No Results Found</Wrapper>;
 
   return (
     <PlaceCardWrapper>
@@ -30,9 +34,14 @@ const SearchResults = ({ data }) => {
 
             <PlaceCard.SubHeader mt="10%">{name}</PlaceCard.SubHeader>
             <PlaceCard.Background bgHeight="80%">
+              {loadingImage ? (
+                <i className="fas fa-circle-notch fa-spin"></i>
+              ) : null}
               {imgResponse ? (
                 <img
-                  src={imgResponse[index]?.data?.hits[2]?.webformatURL}
+                  src={
+                    imgResponse[index]?.data?.hits[2]?.webformatURL || noImage
+                  }
                   alt=""
                 />
               ) : null}
@@ -40,7 +49,7 @@ const SearchResults = ({ data }) => {
           </PlaceCard>
         ))
       ) : (
-        <> Loading</>
+        <FallBack />
       )}
     </PlaceCardWrapper>
   );

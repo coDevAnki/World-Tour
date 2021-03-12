@@ -2,7 +2,13 @@ import React from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { getCountryDetails, getImage } from "../api/axios";
 import { usePromise } from "../custom-hooks";
-import { CountryContent, Map } from "../styled-compoenents";
+import {
+  CountryContent,
+  FallBack,
+  LinkedButton,
+  Map,
+  Wrapper,
+} from "../styled-compoenents";
 import CountryHero from "../styled-compoenents/CountryHero";
 
 const CountryPage = () => {
@@ -18,7 +24,7 @@ const CountryPage = () => {
     getImage(country.replaceAll("_", " "))
   );
 
-  if (loadingData) return <div>loading</div>;
+  if (loadingData) return <FallBack />;
 
   const modifiedCountryName = (country) => {
     return country.slice(0, country.lastIndexOf("/"));
@@ -35,25 +41,42 @@ const CountryPage = () => {
     .slice(-1);
 
   return finalCountry ? (
-    <>
-      {finalCountry.map(({ name, id, snippet, score, content, properties }) => (
-        <>
-          <CountryHero
-            imgSrc={responseImg?.data?.hits[0].largeImageURL}
-            pathname={pathname}
-            countryData={{ name, id, snippet, score }}
-            modifiedCountryName={modifiedCountryName}
-          />
-          <Map
-            id="country-map"
-            country={finalCountry}
-            halfScreen
-            center={finalCountry?.coordinates}
-          />
-          <CountryContent countryData={{ properties, content }} />
-        </>
-      ))}
-    </>
+    <Wrapper direction="column">
+      {finalCountry.map(
+        ({ name, id, snippet, score, content, properties }, index) => (
+          <div direction="column" key={`country_page-${index}`}>
+            <CountryHero
+              imgSrc={responseImg?.data?.hits[0].largeImageURL}
+              countryData={{ name, id, snippet, score }}
+              pathname={pathname}
+              modifiedCountryName={modifiedCountryName}
+            />
+            <Map
+              id="country-map"
+              country={finalCountry}
+              halfScreen
+              center={finalCountry?.coordinates}
+            />
+
+            <CountryContent
+              countryData={{ properties, content }}
+              pathname={pathname}
+              modifiedCountryName={modifiedCountryName}
+            />
+            <Wrapper justify="space-around">
+              <LinkedButton
+                bgc="--clr-lightblue"
+                color="white"
+                width="50%"
+                to={`${modifiedCountryName(pathname)}/${id}/cities`}
+              >
+                Top Cities In {name}
+              </LinkedButton>
+            </Wrapper>
+          </div>
+        )
+      )}
+    </Wrapper>
   ) : null;
 };
 

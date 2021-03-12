@@ -1,32 +1,28 @@
-import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useEffect } from "react";
 import { searchPlace } from "../api/axios";
-import { useQuery } from "../custom-hooks";
-import { Header, SearchResults } from "../styled-compoenents";
+import { usePromise, useQuery } from "../custom-hooks";
+import { FallBack, Header, SearchResults } from "../styled-compoenents";
 
 const SearchPage = () => {
-  const location = useLocation();
   const searchedPlace = useQuery().get("q");
-  const searchedData = location.state?.search;
-  const [fallbackSearchedData, setFallbackSearchedData] = useState();
+  const { loading, response, error } = usePromise(
+    () => searchPlace(searchedPlace),
+    [searchedPlace]
+  );
 
+  const searchedData = response?.data?.results.filter(
+    (suggestion) => suggestion.type === "city" || suggestion.type === "country"
+  );
   useEffect(() => {
-    if (!searchedData) {
-      const getData = async () => {
-        let searchedResults = await searchPlace(searchedPlace);
-        if (searchedResults && searchedResults.data) {
-          setFallbackSearchedData(searchedResults.data.results);
-        }
-      };
-      getData();
-    }
-  }, [searchedPlace]);
+    console.log(loading, response, searchedData);
+  }, [response]);
 
+  if (loading) return <FallBack />;
   return (
-    <div>
+    <>
       <Header fz="3rem">showing results for "{searchedPlace}" </Header>
-      <SearchResults data={searchedData || fallbackSearchedData} />
-    </div>
+      <SearchResults data={searchedData} />
+    </>
   );
 };
 

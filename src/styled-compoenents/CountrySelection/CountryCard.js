@@ -10,7 +10,7 @@ const CountryCard = styled(LinkedCard)`
   font-size: 3rem;
   height: 250px;
   color: var(--clr-secondary);
-  background-color: var(--clr-white);
+  background-color: white;
   margin: 3rem;
   width: 300px;
   display: flex;

@@ -5,6 +5,7 @@ const StyledGoToTop = styled.div`
   bottom: 0;
   right: 10px;
   cursor: pointer;
+  z-index: 10000;
 `;
 const GoToTop = () => {
   const scrollToTop = () => {

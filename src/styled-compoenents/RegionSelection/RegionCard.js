@@ -4,6 +4,8 @@ import LinkedCard from "../LinkedCard";
 const RegionWrapper = styled.div`
   margin-top: 7rem;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 `;
 
 const RegionCard = styled(LinkedCard)`
@@ -19,7 +21,7 @@ const RegionCard = styled(LinkedCard)`
   display: block;
   transition: 0.5s ease transform;
   width: 160px;
-  margin: 0 0.5rem;
+  margin: 5px 0.5rem;
   &:hover {
     transform: scale(1.1);
   }

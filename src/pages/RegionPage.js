@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { getCountriesFromRegion } from "../api/axios";
 import { usePromise } from "../custom-hooks";
-import { CountrySelection, FilterByLetters } from "../styled-compoenents";
+import {
+  CountrySelection,
+  FallBack,
+  FilterByLetters,
+} from "../styled-compoenents";
 
 const RegionPage = () => {
   const { region } = useParams();
@@ -11,8 +15,7 @@ const RegionPage = () => {
   const { loading, response, error } = usePromise(() =>
     getCountriesFromRegion(region)
   );
-
-  if (loading) return <div>loading</div>;
+  if (loading) return <FallBack />;
   return (
     <>
       <FilterByLetters letter={letter} setLetter={setLetter} />

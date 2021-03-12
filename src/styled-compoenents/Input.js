@@ -32,8 +32,12 @@ const InputButton = styled.button`
 `;
 
 const Input = ({ onSubmit, onChange, placeholder, button, partOf }) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSubmit();
+  };
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={handleSubmit}>
       <InputContainer
         id={partOf === "nav" ? "nav-search" : ""}
         partOf={partOf}
@@ -42,7 +46,7 @@ const Input = ({ onSubmit, onChange, placeholder, button, partOf }) => {
         autoComplete="off"
       />
       {button ? (
-        <InputButton onClick={onSubmit} type="submit" partOf={partOf}>
+        <InputButton onClick={handleSubmit} partOf={partOf}>
           <i
             style={{
               color: "skyblue",

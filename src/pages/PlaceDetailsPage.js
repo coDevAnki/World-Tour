@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { getCityDetails, getImage } from "../api/axios";
-import { usePromise } from "../custom-hooks";
-import { Map, PlaceDetails } from "../styled-compoenents";
+import { usePromise, useStartFromTop } from "../custom-hooks";
+import { FallBack, Map, PlaceDetails } from "../styled-compoenents";
 
 const PlaceDetailsPage = () => {
   const { placeName } = useParams();
@@ -11,7 +11,7 @@ const PlaceDetailsPage = () => {
     loading: loadingCityDetails,
     response: responseCityDetails,
   } = usePromise(() => getCityDetails(placeName), [placeName]);
-
+  useStartFromTop();
   const { loading: loadingImage, response: responseImage } = usePromise(() => {
     if (!responseCityDetails?.data?.results) return;
     return Promise.all(
@@ -21,7 +21,7 @@ const PlaceDetailsPage = () => {
     );
   }, [responseCityDetails]);
 
-  if (loadingCityDetails) return <div>Loading...</div>;
+  if (loadingCityDetails) return <FallBack />;
   return (
     <div>
       <Map
@@ -34,6 +34,7 @@ const PlaceDetailsPage = () => {
       />
       {responseCityDetails?.data.results.map((place, index) => (
         <PlaceDetails
+          key={`place-detail${index}`}
           place={place}
           imgSrc={
             responseImage

@@ -10,7 +10,7 @@ const CountrySelection = ({ countries, letter, region }) => {
           <Wrapper key={`country_selection-${index}`} direction="column">
             <CountryCard to={`${region}/${name.replaceAll(" ", "_")}`}>
               {name}
-              <CountryCard.SubHeader>Capital:{capital}</CountryCard.SubHeader>
+              <CountryCard.SubHeader>Capital: {capital}</CountryCard.SubHeader>
               <CountryCard.Icon>
                 <img src={flag} alt="" />
               </CountryCard.Icon>

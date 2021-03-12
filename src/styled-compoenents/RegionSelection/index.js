@@ -6,8 +6,9 @@ const regions = ["Asia", "Europe", "Americas", "Africa", "Oceania"];
 const RegionSelection = ({ setHoveredRegion }) => {
   return (
     <RegionWrapper>
-      {regions.map((region) => (
+      {regions.map((region, index) => (
         <RegionCard
+          key={`region_selection-${index}`}
           onMouseOver={() => {
             setHoveredRegion(region);
           }}

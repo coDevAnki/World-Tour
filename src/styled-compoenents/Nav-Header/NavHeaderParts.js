@@ -8,7 +8,7 @@ export const NavHeaderContainer = styled.div`
   align-items: flex-end;
   width: 100%;
   background-color: transparent;
-  margin-top: 1rem;
+  margin-top: 0.7rem;
   border-left: 5px solid rgba(0, 0, 185, 0.2);
   border-right: 5px solid rgba(0, 0, 185, 0.2);
   padding: 0.2em 1rem;
@@ -40,9 +40,6 @@ export const NavListItem = styled.li`
     width: 200px;
     box-sizing: border-box;
     cursor: pointer;
-    /* position: absolute; */
-    /* left: 50px; */
-    /* z-index: -1; */
     span {
       padding-left: 1rem;
     }

@@ -1,27 +1,38 @@
 import styled from "styled-components";
-import noImage from "../../assets/no_image-600x490-removebg-preview_cropped.png";
+
+const PlaceDetailsContainer = styled.div`
+  margin-top: 10rem;
+`;
 const DescriptionContainer = styled.div`
   width: 60vw;
   height: 60vh;
-  background: ${({ bgsrc, loadingImage }) =>
-    bgsrc
-      ? `url("${bgsrc}")`
-      : loadingImage
-      ? ""
-      : `var(--clr-bg) url(${noImage})`};
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: ${({ bgsrc }) => (bgsrc ? "cover" : "contain")};
-  margin-left: 10%;
   margin-bottom: 15rem;
   padding-top: 3rem;
+  margin-left: 6%;
   min-height: min-content;
+  position: relative;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: ${({ isBgImg }) => (isBgImg ? "cover" : "contain")};
+  }
 `;
 const DescriptionHeaderContainer = styled.div`
-  margin-left: 10%;
+  margin-left: 5%;
   margin-bottom: 5px;
+  i {
+    color: red;
+    cursor: pointer;
+    transition: 0.1s ease-in-out transform;
+    transform: scale(0.9);
+    :hover {
+      transform: none;
+    }
+  }
 `;
 const DescriptionText = styled.p`
+  position: absolute;
+  top: 15%;
   width: 70%;
   margin-left: 70%;
   padding: 2em 1em;
@@ -34,4 +45,9 @@ const DescriptionText = styled.p`
   );
 `;
 
-export { DescriptionContainer, DescriptionText, DescriptionHeaderContainer };
+export {
+  PlaceDetailsContainer,
+  DescriptionContainer,
+  DescriptionText,
+  DescriptionHeaderContainer,
+};
