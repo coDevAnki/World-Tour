@@ -23,7 +23,7 @@ const Map = ({
       style={{
         width: halfScreen ? "50vw" : "88vw",
         height: halfScreen ? "88vh" : "90vh",
-        margin: halfScreen ? "3rem" : "10px auto",
+        margin: halfScreen ? "3rem" : "2rem auto",
         float: halfScreen ? "left" : "",
         borderRadius: round ? "50%" : "",
       }}

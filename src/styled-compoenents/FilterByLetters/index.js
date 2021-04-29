@@ -1,5 +1,5 @@
-import React from "react";
-import { Wrapper } from "../../styled-compoenents";
+import styled from "styled-components";
+import { useMediaQuery } from "../../custom-hooks";
 import { Letter } from "./Letter";
 const LETTERS = (() => {
   let arr = [];
@@ -9,10 +9,22 @@ const LETTERS = (() => {
   return arr;
 })();
 
+const LettersContainer = styled.div`
+  font-size: 1.8rem;
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  @media (max-width: 800px) {
+    justify-content: center;
+  }
+`;
+
 const FilterByLetter = ({ letter, setLetter }) => {
+  let match = useMediaQuery("(max-width: 800px)");
   return (
-    <Wrapper fz="1.8rem" justify="flex-end">
-      filter by letters-
+    <LettersContainer>
+      {match ? "" : "filter by letters-"}
       {LETTERS.map((ltr, index) => (
         <Letter
           key={`filter_by_letter-${index}`}
@@ -34,7 +46,7 @@ const FilterByLetter = ({ letter, setLetter }) => {
       >
         all
       </Letter>
-    </Wrapper>
+    </LettersContainer>
   );
 };
 

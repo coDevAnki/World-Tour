@@ -11,11 +11,11 @@ const TopCitiesPage = () => {
     getAllCities(country)
   );
   const [activeInMap, setActiveInMap] = useState();
-  const {
-    loading: loadingCountryArea,
-    response: responseCountryArea,
-  } = usePromise(() => getCountryCodes(country));
+  const { response: responseCountryArea } = usePromise(() =>
+    getCountryCodes(country)
+  );
   useStartFromTop();
+
   const { loading: loadingImage, response: responseImage } = usePromise(() => {
     if (!responseCities?.data?.results) return;
     return Promise.all(

@@ -16,7 +16,7 @@ const MapChildren = ({
   const map = useMap();
 
   const { country } = useParams();
-  const { loading, response: geoData } = usePromise(
+  const { response: geoData } = usePromise(
     () => getGeoData({ country: country || countryinMap, region: regionInMap }),
     [regionInMap, countryinMap]
   );

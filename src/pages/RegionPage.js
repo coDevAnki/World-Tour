@@ -12,7 +12,7 @@ const RegionPage = () => {
   const { region } = useParams();
   const [letter, setLetter] = useState();
 
-  const { loading, response, error } = usePromise(() =>
+  const { loading, response } = usePromise(() =>
     getCountriesFromRegion(region)
   );
   if (loading) return <FallBack />;

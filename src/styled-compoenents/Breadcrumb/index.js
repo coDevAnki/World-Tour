@@ -2,12 +2,15 @@ import React, { createRef, useEffect } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import styled from "styled-components";
 
-export const BreadcrumbItem = styled(Link).attrs(({ selected, to }) => {
-  if (!selected) return { to };
-})`
+export const BreadcrumbItem = styled(Link).attrs(
+  ({ selected, to, currentPath }) => {
+    if (!selected) return { to };
+    else return { to: currentPath };
+  }
+)`
   text-decoration: none;
   font-size: 2.3rem;
-  margin-left: 0.4em;
+  margin: 0 0.2.5em;
   color: ${({ selected }) => (selected ? `darkviolet` : `var(--clr-primary)`)};
   cursor: ${({ selected }) => (selected ? `default` : `cursor`)};
   :hover {
@@ -54,6 +57,7 @@ const Breadcrumb = () => {
             index !== Object.values(params).length - 1 &&
             extracedPath(paramValue, index)
           }
+          currentPath={pathname}
         >
           {paramValue.replaceAll("_", " ")}
         </BreadcrumbItem>

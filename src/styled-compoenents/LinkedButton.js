@@ -23,5 +23,7 @@ const LinkedButton = styled(Link)`
       bgc ? `rgba(var(${bgc}-rgb), 0.8)` : "var(--clr-bg)"};
   }
   width: ${({ width }) => (width ? width : "auto")};
+  margin: ${({ margin }) => (margin ? margin : "1rem 0")};
+  display: block;
 `;
 export default LinkedButton;

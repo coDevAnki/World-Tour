@@ -8,9 +8,9 @@ import {
   ScrollIndicator,
 } from "./styled-compoenents";
 
-const LandingPage = lazy(() => import("./pages/LandingPage"));
-const CountryPage = lazy(() => import("./pages/CountryPage"));
-const RegionPage = lazy(() => import("./pages/RegionPage"));
+const LandingPage = lazy(() => import("./pages/LandingPage.js"));
+const CountryPage = lazy(() => import("./pages/CountryPage.js"));
+const RegionPage = lazy(() => import("./pages/RegionPage.js"));
 const TopCitiesPage = lazy(() => import("./pages/TopCitiesPage.js"));
 const PlaceDetailsPage = lazy(() => import("./pages/PlaceDetailsPage.js"));
 const SearchPage = lazy(() => import("./pages/SearchPage.js"));

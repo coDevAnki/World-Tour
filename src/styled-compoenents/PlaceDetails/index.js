@@ -6,7 +6,7 @@ import {
   DescriptionHeaderContainer,
   DescriptionText,
   PlaceDetailsContainer,
-} from "./Description";
+} from "./PlaceDetailsParts";
 
 const PlaceDetails = ({ place, loadingImage, imgSrc, setActiveInMap }) => {
   return (

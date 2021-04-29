@@ -75,7 +75,7 @@ const FallBack = () => {
     <SpinnerContainer>
       <SpinnerCirclesContainer>
         {Arr.map((item, i) => (
-          <SpinnerCircle i={i} />
+          <SpinnerCircle i={i} key={`fallback_${i}`} />
         ))}
         <Aeroplane>
           <i className="fas fa-plane fa-2x"></i>

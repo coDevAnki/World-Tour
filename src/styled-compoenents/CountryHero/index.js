@@ -18,7 +18,10 @@ const CountryHero = ({
             {score.toFixed(1)}
           </h3>
           <p>{snippet}</p>
-          <LinkedButton to={`${modifiedCountryName(pathname)}/${id}/cities`}>
+          <LinkedButton
+            width="max-content"
+            to={`${modifiedCountryName(pathname)}/${id}/cities`}
+          >
             Top Cities In {name}
           </LinkedButton>
         </CountryInner>

@@ -20,7 +20,7 @@ const LandingPage = () => {
         alt="City by the beach"
       >
         <HeroImage.Content top="20%" left="1rem">
-          <Header hero color="white">
+          <Header mt="2rem" color="white">
             You're going on <br /> an adventure!
           </Header>
           <SearchBar />

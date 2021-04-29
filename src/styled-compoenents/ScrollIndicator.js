@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import GoToTop from "./GoToTop";
-const StyledScrollIndicator = styled.div`
+const StyledScrollIndicator = styled.div.attrs(({ progress }) => ({
+  style: {
+    transform: `scaleX(${progress})`,
+  },
+}))`
   position: fixed;
   height: 5px;
   background-color: blue;
   width: 100%;
   top: 0;
   transform-origin: left;
-  transform: ${({ progress }) => `scaleX(${progress})`};
   z-index: 1000;
 `;
 const ScrollIndicator = () => {

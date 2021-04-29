@@ -8,4 +8,6 @@ export default styled.div`
   justify-content: ${({ justify }) => (justify ? justify : "center")};
   align-items: ${({ align }) => (align ? align : "center")};
   font-size: ${({ fz }) => (fz ? fz : "auto")};
+  margin: ${({ margin }) => (margin ? margin : "")};
+  flex-wrap: ${({ wrap }) => (wrap ? "wrap" : "nowrap")};
 `;

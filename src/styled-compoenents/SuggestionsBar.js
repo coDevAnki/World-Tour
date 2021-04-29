@@ -4,18 +4,18 @@ const SuggestionsBarWrapper = styled.div`
   font-size: ${({ fz }) => (fz ? fz : "2.5rem")};
   border-radius: 5px;
   background-color: white;
-  width: 100%;
   padding-top: 1rem;
   transform: ${({ active }) =>
     active ? `scaleY(1) translateY(-7px)` : `scaleY(0) translateY(-7px)`};
+  width: ${({ partOf }) => (partOf === "nav" ? "200px" : "calc(100% - 2rem)")};
   transform-origin: top;
   transition: ${({ partOf }) =>
     partOf === "nav" ? "" : "0.2s ease transform"};
   position: absolute;
   z-index: 2000;
+  margin-left: 2rem;
 `;
 const SuggestionItem = styled.div`
-  width: 100%;
   cursor: pointer;
   box-sizing: padding-box;
   font-size: 2rem;

@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory, useLocation, useParams } from "react-router-dom";
 import { searchPlace } from "../api/axios";
-import { useDebounce, usePromise, useQuery } from "./index";
+import { useDebounce, usePromise } from "./index";
 
 const useSearch = () => {
   const [term, setTerm] = useState();
   const [debouncedTerm, setDebouncedTerm] = useDebounce(term, 300);
-  const query = useQuery();
+  const { q: query } = useParams();
   const { pathname } = useLocation();
   const history = useHistory();
 

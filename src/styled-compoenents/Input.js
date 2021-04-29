@@ -1,14 +1,19 @@
 import styled from "styled-components";
+const InputForm = styled.form`
+  min-width: 200px;
+  position: relative;
+`;
 const InputContainer = styled.input`
   background-color: ${({ partOf }) =>
     partOf === "nav" ? "transparent" : "var(--clr-bg)"};
   color: ${({ partOf }) => (partOf === "nav" ? "transparent" : "")};
   border: none;
   outline: none;
+  width: ${({ partOf }) => (partOf === "nav" ? "100%" : "calc(100% - 2rem)")};
+  margin-left: 2rem;
   font-size: ${({ partOf }) => (partOf === "nav" ? "2rem" : "2.5rem")};
   border-radius: 5px;
   padding: 1rem 2rem;
-  width: 100%;
   ::placeholder {
     font-weight: var(--font-light);
   }
@@ -27,7 +32,7 @@ const InputButton = styled.button`
   padding: 0.5rem;
   z-index: 10;
   top: 3px;
-  right: -20px;
+  right: 1rem;
   cursor: pointer;
 `;
 
@@ -37,7 +42,7 @@ const Input = ({ onSubmit, onChange, placeholder, button, partOf }) => {
     onSubmit();
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <InputForm onSubmit={handleSubmit}>
       <InputContainer
         id={partOf === "nav" ? "nav-search" : ""}
         partOf={partOf}
@@ -56,7 +61,7 @@ const Input = ({ onSubmit, onChange, placeholder, button, partOf }) => {
           ></i>
         </InputButton>
       ) : null}
-    </form>
+    </InputForm>
   );
 };
 

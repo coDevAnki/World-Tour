@@ -13,8 +13,19 @@ font-size:10px;
 --font-bold:400;
 --font-md:300;
 --font-light:200;
-}
 
+@media(max-width:700px){
+  font-size:9px;
+}
+@media(max-width:500px){
+  font-size:8px;
+}
+}
+*{
+  padding:0;
+  margin:0;
+  box-sizing:border-box;
+}
 body{
     overflow-x:hidden;
     position:relative;

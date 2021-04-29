@@ -1,18 +1,7 @@
-import L from "leaflet";
 import React, { useEffect, useRef } from "react";
 import { Marker, Popup, Tooltip } from "react-leaflet";
 import styled from "styled-components";
-import markerIcon from "../../assets/marker.svg";
 
-const myIcon = L.icon({
-  iconUrl: markerIcon,
-  iconSize: [40, 40],
-  iconAnchor: [18, 40],
-  popupAnchor: null,
-  shadowUrl: null,
-  shadowSize: null,
-  shadowAnchor: null,
-});
 const PopupContainer = styled.div`
   font-size: 2rem;
   display: flex;

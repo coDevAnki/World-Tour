@@ -9,11 +9,19 @@ const PlaceCardWrapper = styled(Wrapper)`
 const PlaceCard = styled(Link)`
   height: 500px;
   position: relative;
-  margin: 3rem;
+  margin: 5rem 2rem;
   width: 350px;
   display: flex;
   flex-direction: column;
   box-shadow: 5px 5px 10px grey;
+
+  @media (max-width: 400px) {
+    width: 280px;
+    height: 400px;
+  }
+`;
+PlaceCard.TypeHeader = styled.div`
+  margin: 0.5em;
 `;
 PlaceCard.SubHeader = styled.div`
   font-size: 2.5rem;
@@ -31,6 +39,9 @@ PlaceCard.Background = styled.div`
   height: ${({ bgHeight }) => (bgHeight ? bgHeight : "90%")};
   position: absolute;
   bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   img {
     width: 100%;
     height: 100%;

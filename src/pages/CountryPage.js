@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { getCountryDetails, getImage } from "../api/axios";
-import { usePromise } from "../custom-hooks";
+import { useMediaQuery, usePromise } from "../custom-hooks";
 import {
   CountryContent,
   FallBack,
@@ -14,13 +14,13 @@ import CountryHero from "../styled-compoenents/CountryHero";
 const CountryPage = () => {
   const { country } = useParams();
   const { pathname } = useLocation();
-
+  const match = useMediaQuery("(max-width:650px)");
   const { loading: loadingData, response: responseData } = usePromise(
     () => getCountryDetails(country),
     [country]
   );
 
-  const { loading: loadingImg, response: responseImg } = usePromise(() =>
+  const { response: responseImg } = usePromise(() =>
     getImage(country.replaceAll("_", " "))
   );
 
@@ -33,8 +33,8 @@ const CountryPage = () => {
   const finalCountry = responseData?.data?.results
     .filter(
       (item, index) =>
-        item.id == country ||
-        item.name == country ||
+        item.id === country ||
+        item.name === country ||
         index === 0 ||
         item.name.includes(country)
     )
@@ -54,7 +54,7 @@ const CountryPage = () => {
             <Map
               id="country-map"
               country={finalCountry}
-              halfScreen
+              halfScreen={match ? false : true}
               center={finalCountry?.coordinates}
             />
 
@@ -63,7 +63,7 @@ const CountryPage = () => {
               pathname={pathname}
               modifiedCountryName={modifiedCountryName}
             />
-            <Wrapper justify="space-around">
+            <Wrapper justify="space-around" margin="2rem 0">
               <LinkedButton
                 bgc="--clr-lightblue"
                 color="white"

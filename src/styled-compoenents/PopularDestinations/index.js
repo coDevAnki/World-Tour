@@ -12,7 +12,7 @@ const PopularDestinationsData = [
     title: "INDIA",
     to: "region/India",
     src:
-      "https://cdn.pixabay.com/photo/2015/07/29/22/56/india-866692_960_720.jpg",
+      "https://images.pexels.com/photos/1603650/pexels-photo-1603650.jpeg?auto=compress&cs=tinysrgb&h=720&w=960",
   },
   {
     title: "UNITED STATES OF AMERICA",
@@ -45,6 +45,9 @@ const PopularDestinationsContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  header {
+    text-align: center;
+  }
 `;
 const PopularDestinations = () => {
   return (
@@ -55,7 +58,7 @@ const PopularDestinations = () => {
           <PlaceCard to={to} key={`popular_destination-${index}`}>
             <PlaceCard.SubHeader color="white">{title}</PlaceCard.SubHeader>
             <PlaceCard.Background bgHeight="100%">
-              <img src={src} />
+              <img src={src} alt={title} />
             </PlaceCard.Background>
           </PlaceCard>
         ))}
